@@ -9,16 +9,20 @@ var j = schedule.scheduleJob('*/59 * * * * *', function(){
 
 	var host = '8.8.8.8';
 	ping.sys.probe(host, function(isAlive){
-	
+
 		if(isAlive){
-		cont = 0;		
+		cont = 0;
 		test = speedTest.visual({maxTime: 5000});
 		test.on('data', function(data) {
 
 			dweetio.dweet_for("watchdog16", {some:data}, function(err, dweet){
+				if(!err){
+				console.log("Test realizado con Exito!!!")
+				}
 			});
-			console.log("Test realizado con Exito!!!")		
+
 		});
+
 		}else{
 			cont +=1;
 		}
@@ -26,9 +30,7 @@ var j = schedule.scheduleJob('*/59 * * * * *', function(){
 			console.log("Reintentando conexion...3..2..1..");
 			cont = 0
 		}
-		
-	
-	});	
+
+
+	});
 });
-
-
