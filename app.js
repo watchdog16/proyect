@@ -12,7 +12,7 @@ var j = schedule.scheduleJob('*/59 * * * * *', function(){
 
 		if(isAlive){
 		cont = 0;
-		test = speedTest.visual({maxTime: 5000});
+		test = speedTest({maxTime: 5000});
 		test.on('data', function(data) {
 
 			dweetio.dweet_for("watchdog16", {some:data}, function(err, dweet){
